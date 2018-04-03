@@ -45,6 +45,19 @@ public class Calculator {
         return result;
     }
 
+    public double calculate(double left, double right, String operator) throws UnsupportedMathOperation{
+        this.left = left;
+        this.right = right;
+        this.operator = operator;
+        try {
+            operation = getOperationFor(operator);
+        } catch (UnsupportedBinaryOperator unsupportedBinaryOperator) {
+            unsupportedBinaryOperator.printStackTrace();
+        }
+        result = operation.resultFor(left, right);
+        return result;
+    }
+
     private BinaryOperation getOperationFor(String operator) throws UnsupportedBinaryOperator {
         if ("+".equals(operator)) {
             return new Addition();
