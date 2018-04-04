@@ -36,7 +36,6 @@ public class Calculator {
         left = Double.parseDouble(arguments[0]);
         operator = arguments[1];
         right = Double.parseDouble(arguments[2]);
-        operation = getOperationFor(operator);
     }
 
     public double calculate() throws UnsupportedMathOperation{
@@ -45,30 +44,29 @@ public class Calculator {
         return result;
     }
 
-    public double calculate(double left, double right, String operator) throws UnsupportedMathOperation, UnsupportedBinaryOperator{
+    public double calculate(double left, double right, String operator) throws UnsupportedMathOperation{
         this.left = left;
         this.right = right;
         this.operator = operator;
-        operation = getOperationFor(operator);
         result = operation.resultFor(left, right);
         return result;
     }
 
-    private BinaryOperation getOperationFor(String operator) throws UnsupportedBinaryOperator {
+    public void getOperationFor() throws UnsupportedBinaryOperator {
         if ("+".equals(operator)) {
-            return new Addition();
+            operation = new Addition();
         } else if ("-".equals(operator)) {
-            return new Subtraction();
+            operation = new Subtraction();
         } else if ("*".equals(operator)) {
-            return new Multiplication();
+            operation = new Multiplication();
         } else if ("/".equals(operator)) {
-            return new Division();
+            operation = new Division();
         } else if ("^".equals(operator)) {
-            return new Power();
+            operation = new Power();
         } else if ("log".equals(operator)) {
-            return new Logarithm();
+            operation = new Logarithm();
         } else if ("root".equals(operator)) {
-            return new Root();
+            operation = new Root();
         } else {
             throw new UnsupportedBinaryOperator(operator);
         }
