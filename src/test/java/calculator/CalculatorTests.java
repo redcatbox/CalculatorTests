@@ -6,14 +6,12 @@ import home.dbarannik.Exceptions.UnsupportedMathOperation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.matchers.JUnitMatchers;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import static org.assertj.core.api.Assertions.*;
 
 @RunWith(Parameterized.class)
 public class CalculatorTests {
-
     // Parameters
     @Parameterized.Parameter(0)
     public double left;
@@ -39,56 +37,91 @@ public class CalculatorTests {
         calculator = null;
     }
 
-    /******************************
-    // Addition
-    ******************************/
+    /******************************/
+    //  Addition
+    /******************************/
     // Parameters
     @Parameterized.Parameters
     public static Object[][] getInputDataAddition() {
         return new Object[][]
                 {
+                        // additions
                         {1, 2, "+", 3},
                         {1.1, 2.2, "+", 3.3},
                         {-1, 2, "+", 1},
                         {1.1, -2.2, "+", -1.1},
-                        {-1, -2, "+", -3}
+                        {-1, -2, "+", -3},
+
+                        // subtractions
+                        {2, 1, "-", 1},
+                        {1.1, 2.2, "-", -1.1},
+                        {-1, 2, "-", -3},
+                        {1, -2, "-", 3},
+                        {-1.1, -2.2, "-", 1.1},
+
+                        // multiplications
+                        {2, 2, "*", 4},
+                        {-1, 2.2, "*", -2.2},
+                        {1.1, -2, "*", -2.2},
+                        {-1, -2, "*", 2},
+
+                        // divisions
+                        {2, 2, "/", 1},
+                        {-1, 2, "/", -0.5},
+                        {2.0, -1.0, "/", -2.0},
+                        {-2, -1, "/", 2},
+
+                        // powers
+                        {2, 2, "^", 4},
+                        {2, 0, "^", 1},
+                        {2.0, -1.0, "^", 0.5},
+                        {-2, 2, "^", 4},
+                        {-2, -2, "^", 0.25},
+
+                        // logs
+                        {1.0, 10.0, "log", 0.0},
+                        {10.0, 10.0, "log", 1.0},
+
+                        // roots
+                        {4, 2, "root", 2},
+                        {4, -2, "root", 0.5},
                 };
     }
 
     @Test
-    public void additions() throws UnsupportedMathOperation {
-        // arrange
-//        double left = 100.0;
-//        double right = 200.0;
-//        String operator = "+";
-//        double expectedResult = 300;
-
-        // act
+    public void operations() throws UnsupportedMathOperation, UnsupportedBinaryOperator {
         double actualResult = calculator.calculate(left, right, operator);
-
-        // assert
         assertThat(actualResult).isCloseTo(expectedResult, within(0.000001));
+        System.out.println("Operation " + operator + " : " + left + " " + operator + " " + right + "; " + "act = " + actualResult + ", " + "exp = " + expectedResult);
     }
 
+//    /******************************/
+//    //    Exceptions
+//    /******************************/
 //    @Test(expected = UnsupportedBinaryOperator.class)
-//    public void exceptions() throws UnsupportedBinaryOperator {
-//        double left = 100.0;
-//        double right = 200.0;
-//        String operator = "wrong";
-//
-//        assertThatThrownBy(() -> calculator.calculate(left, right, operator)).isInstanceOf(UnsupportedBinaryOperator.class);
+//    public void exceptionUnsupportedBinaryOperator() throws UnsupportedBinaryOperator {
+//        double dataEx = 1.0;
+//        String operatorEx = "wrong";
+//        assertThatThrownBy(() -> calculator.calculate(dataEx, dataEx, operatorEx)).isInstanceOf(UnsupportedBinaryOperator.class);
 //    }
 
 //    @Test(expected = UnsupportedMathOperation.class)
-//    public void exception() throws UnsupportedMathOperation {
-//        double left = 100.0;
-//        double right = 200.0;
-//        String operator = "wrong";
-//
+//    public void exceptionUnsupportedMathOperation() throws UnsupportedMathOperation {
+//        double leftEx = 1.0;
+//        double rightEx = 0.0;
+//        String operatorEx = "/";
+//        assertThatThrownBy(() -> calculator.calculate(left, right, operator)).isInstanceOf(UnsupportedMathOperation.class);
+//    }
+
+//    @Test(expected = UnsupportedMathOperation.class)
+//    public void exceptionUnsupportedMathOperation() throws UnsupportedMathOperation {
+//        double leftEx = -1.0;
+//        double rightEx = 1.0;
+//        String operatorEx = "root";
 //        assertThatThrownBy(() -> calculator.calculate(left, right, operator)).isInstanceOf(UnsupportedMathOperation.class);
 //    }
 }
 
-
-
-
+// arrange
+// act
+// assert
