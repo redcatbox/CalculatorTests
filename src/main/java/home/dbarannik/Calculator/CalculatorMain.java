@@ -19,6 +19,7 @@ public class CalculatorMain {
             try {
                 calculator.getValidExpression();
                 calculator.parseExpression();
+                calculator.getOperationFor();
                 calculator.calculate();
             } catch (UnsupportedMathExpression uME) {
                 System.err.println("Unsupported expression " + uME.getExpression());
