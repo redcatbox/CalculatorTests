@@ -11,7 +11,7 @@ import org.junit.runners.Parameterized;
 import static org.assertj.core.api.Assertions.*;
 
 @RunWith(Parameterized.class)
-public class CalculatorTests {
+public class CalculatorTestsOperations {
     // Parameters
     @Parameterized.Parameter(0)
     public double left;
@@ -37,9 +37,6 @@ public class CalculatorTests {
         calculator = null;
     }
 
-    /******************************/
-    //  Addition
-    /******************************/
     // Parameters
     @Parameterized.Parameters
     public static Object[][] getInputDataAddition() {
@@ -94,34 +91,7 @@ public class CalculatorTests {
         assertThat(actualResult).isCloseTo(expectedResult, within(0.000001));
         System.out.println("Operation " + operator + " : " + left + " " + operator + " " + right + "; " + "act = " + actualResult + ", " + "exp = " + expectedResult);
     }
-
-//    /******************************/
-//    //    Exceptions
-//    /******************************/
-//    @Test(expected = UnsupportedBinaryOperator.class)
-//    public void exceptionUnsupportedBinaryOperator() throws UnsupportedBinaryOperator {
-//        double dataEx = 1.0;
-//        String operatorEx = "wrong";
-//        assertThatThrownBy(() -> calculator.calculate(dataEx, dataEx, operatorEx)).isInstanceOf(UnsupportedBinaryOperator.class);
-//    }
-
-//    @Test(expected = UnsupportedMathOperation.class)
-//    public void exceptionUnsupportedMathOperation() throws UnsupportedMathOperation {
-//        double leftEx = 1.0;
-//        double rightEx = 0.0;
-//        String operatorEx = "/";
-//        assertThatThrownBy(() -> calculator.calculate(left, right, operator)).isInstanceOf(UnsupportedMathOperation.class);
-//    }
-
-//    @Test(expected = UnsupportedMathOperation.class)
-//    public void exceptionUnsupportedMathOperation() throws UnsupportedMathOperation {
-//        double leftEx = -1.0;
-//        double rightEx = 1.0;
-//        String operatorEx = "root";
-//        assertThatThrownBy(() -> calculator.calculate(left, right, operator)).isInstanceOf(UnsupportedMathOperation.class);
-//    }
 }
-
 // arrange
 // act
 // assert
