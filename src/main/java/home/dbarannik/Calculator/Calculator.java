@@ -45,15 +45,11 @@ public class Calculator {
         return result;
     }
 
-    public double calculate(double left, double right, String operator) throws UnsupportedMathOperation{
+    public double calculate(double left, double right, String operator) throws UnsupportedMathOperation, UnsupportedBinaryOperator{
         this.left = left;
         this.right = right;
         this.operator = operator;
-        try {
-            operation = getOperationFor(operator);
-        } catch (UnsupportedBinaryOperator unsupportedBinaryOperator) {
-            unsupportedBinaryOperator.printStackTrace();
-        }
+        operation = getOperationFor(operator);
         result = operation.resultFor(left, right);
         return result;
     }
