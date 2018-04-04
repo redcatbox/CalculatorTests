@@ -6,7 +6,7 @@ import home.dbarannik.Exceptions.UnsupportedMathOperation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class CalculatorTestsExceptions {
 
@@ -26,14 +26,13 @@ public class CalculatorTestsExceptions {
     }
 
     @Test(expected = UnsupportedBinaryOperator.class)
-    public void exceptionUnsupportedBinaryOperator() throws UnsupportedBinaryOperator {
-        double dataEx = 1.0;
+    public void exceptionUnsupportedBinaryOperator() {
         String operatorEx = "wrong";
-        assertThatThrownBy(() -> calculator.calculate(dataEx, dataEx, operatorEx)).isInstanceOf(UnsupportedBinaryOperator.class);
+        assertThatThrownBy(() -> calculator.getOperationFor(operatorEx)).isInstanceOf(UnsupportedBinaryOperator.class);
     }
 
     @Test(expected = UnsupportedMathOperation.class)
-    public void exceptionUnsupportedMathOperationDivide() throws UnsupportedMathOperation {
+    public void exceptionUnsupportedMathOperationDivide() {
         double leftEx = 1.0;
         double rightEx = 0.0;
         String operatorEx = "/";
@@ -41,7 +40,7 @@ public class CalculatorTestsExceptions {
     }
 
     @Test(expected = UnsupportedMathOperation.class)
-    public void exceptionUnsupportedMathOperationRoot() throws UnsupportedMathOperation {
+    public void exceptionUnsupportedMathOperationRoot() {
         double leftEx = -1.0;
         double rightEx = 1.0;
         String operatorEx = "root";

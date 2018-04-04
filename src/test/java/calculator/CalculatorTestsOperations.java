@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @RunWith(Parameterized.class)
 public class CalculatorTestsOperations {
+
     // Parameters
     @Parameterized.Parameter(0)
     public double left;
