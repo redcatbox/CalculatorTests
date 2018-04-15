@@ -50,7 +50,7 @@ public class Calculator {
         this.right = right;
         this.operator = operator;
         try {
-            getOperationFor(operator);
+            operation = getOperationFor(operator);
         } catch (UnsupportedBinaryOperator unsupportedBinaryOperator) {
             unsupportedBinaryOperator.printStackTrace();
         }
